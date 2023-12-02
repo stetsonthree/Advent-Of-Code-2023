@@ -1,4 +1,12 @@
-puts "mxmkjvgsdzfhseightonetwoeight7
+SAMPLE_PUZZLE_INPUT = "two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen"
+
+PUZZLE_INPUT = "mxmkjvgsdzfhseightonetwoeight7
 3five4s84four9rtbzllggz
 75sevenzdrpkv1onetwo
 3q7ctkghhqkpb5four
@@ -998,6 +1006,45 @@ cnktjkjmcg46fiverxlxkmxvkmnklsfive
 sevenfourfour99seven8
 ktgfiveone76ghj
 7zgzsevenftkdfour186"
+
+def convert_strings_to_digits(code)
+  new_code = ""
+  iterator = 0
+  while iterator < code.length
+    code[iterator..code.length].start_with?("1") ? new_code += "1" : nil
+    code[iterator..code.length].start_with?("2") ? new_code += "2" : nil 
+    code[iterator..code.length].start_with?("3") ? new_code += "3" : nil
+    code[iterator..code.length].start_with?("4") ? new_code += "4" : nil
+    code[iterator..code.length].start_with?("5") ? new_code += "5" : nil
+    code[iterator..code.length].start_with?("6") ? new_code += "6" : nil
+    code[iterator..code.length].start_with?("7") ? new_code += "7" : nil
+    code[iterator..code.length].start_with?("8") ? new_code += "8" : nil
+    code[iterator..code.length].start_with?("9") ? new_code += "9" : nil
+    code[iterator..code.length].start_with?("one") ? new_code += "1" : nil
+    code[iterator..code.length].start_with?("two") ? new_code += "2" : nil
+    code[iterator..code.length].start_with?("three") ? new_code += "3" : nil
+    code[iterator..code.length].start_with?("four") ? new_code += "4" : nil
+    code[iterator..code.length].start_with?("five") ? new_code += "5" : nil
+    code[iterator..code.length].start_with?("six") ? new_code += "6" : nil
+    code[iterator..code.length].start_with?("seven") ? new_code += "7" : nil
+    code[iterator..code.length].start_with?("eight") ? new_code += "8" : nil
+    code[iterator..code.length].start_with?("nine") ? new_code += "9" : nil
+    iterator += 1
+  end
+  new_code
+end
+
+puts PUZZLE_INPUT
   .split("\n")
+  .map { |code| convert_strings_to_digits(code) }
+
+puts PUZZLE_INPUT
+  .split("\n")
+  .map { |code| convert_strings_to_digits(code) }
+  .map { |code| "#{code.match(/\d/)}#{code.match(/\d(?=[^\d]*$)/)}".to_i }
+
+puts PUZZLE_INPUT
+  .split("\n")
+  .map { |code| convert_strings_to_digits(code) }
   .map { |code| "#{code.match(/\d/)}#{code.match(/\d(?=[^\d]*$)/)}".to_i }
   .inject(:+)
